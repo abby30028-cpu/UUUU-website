@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>U魂的棺材內......</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #18191a; /* FB 深色模式背景色 */
+            color: #e4e6eb; /* FB 深色模式文字色 */
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* 讓內容置中 */
+        }
+        
+        /* 整個頁面的大容器，使用 flex 排版讓左右並列 */
+        .layout-container {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            gap: 20px; /* 左右欄位的間距 */
+        }
+
+        /* 🟦 左側欄位：大頭貼與個人簡介 */
+        .left-sidebar {
+            background-color: #242526; /* 區塊背景色 */
+            width: 300px; /* 固定寬度 */
+            padding: 20px;
+            border-radius: 10px;
+            height: fit-content; /* 高度隨內容調整 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* 變成圓形 */
+            object-fit: cover;
+            border: 4px solid #3a3b3c;
+        }
+
+        /* 🟩 右側欄位：動態時報 / 內容展示 */
+        .right-content {
+            flex: 1; /* 佔據剩下的所有寬度 */
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* 每篇貼文的間距 */
+        }
+
+        /* 每一篇貼文的卡片設計 */
+        .post-card {
+            background-color: #242526;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .post-title { margin-top: 0; color: #ffffff; }
+        /* 👇 新增 1：發布時間的樣式 👇 */
+        .post-time {
+            color: #8a8d91; /* 次要資訊的灰色 */
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        /* 👇 新增 2：內文圓角方框的樣式 👇 */
+        .content-box {
+            background-color: #3a3b3c; /* 比卡片底色再稍微亮一點點的深灰色 */
+            padding: 15px; /* 框內留白，讓文字不會貼齊邊緣 */
+            border-radius: 12px; /* 圓角設定 */
+            color: #e4e6eb;
+            line-height: 1.6; /* 增加行距，讓長篇閱讀更舒服 */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); /* 微微的內陰影增加立體感 */
+        }
+        .back-btn {
+            color: #00ccff;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-container">
+        
+        <div class="left-sidebar">
+            <img src="{{ url_for('static', filename='profile_2.png') }}" alt="大頭貼" class="profile-pic">
+            <h2>U魂</h2>
+            <p style="color: #b0b3b8; font-size: 14px;">啊......我先放著，之後再想要新增什麼，然後這邊的頭貼繪師是羽影！</p>
+            <hr style="border-color: #3a3b3c;">
+            <p>😢目前狀態：腰很痛</p>
+        </div>
+
+        <div class="right-content">
+            
+            <a href="{{ url_for('home') }}" class="back-btn">⬅️ 返回首頁</a>
+
+            <div class="post-card">
+                <h3 class="post-title">當玉藻十字的背後靈，繪師：水市</h3>
+                <div class="post-time">2026年2月22日 17:23</div>
+                
+                <div class="content-box">
+                    <p style="margin-top: 0;">現在不知道要放啥，先放委託圖</p>
+                    <p>總之很讚，我愛死</p>
+                    <img src="{{ url_for('static', filename='newart_2.jpg') }}" alt="委託圖2" style="width: 100%; border-radius: 8px; margin-top: 10px;">
+                </div>
+            </div>
+
+            <div class="post-card">
+                <h3 class="post-title">小動物，繪師：羽影</h3>
+                <div class="post-time">2026年2月22日 16:18</div>
+                
+                <div class="content-box">
+                    <p style="margin-top: 0;">我愛死小動物，耶</p>
+                    <img src="{{ url_for('static', filename='newart_3.jpg') }}" alt="委託圖3" style="width: 100%; border-radius: 8px; margin-top: 10px;">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

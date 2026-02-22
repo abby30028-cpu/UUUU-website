@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>U魂的棺材</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 這裡放 CSS：控制所有美觀與動畫 */
+        .enter-btn {
+    display: inline-block;
+    background-color: #840505; /* 櫻花粉色按鈕 */
+    color: white;
+    text-decoration: none; /* 去除超連結底線 */
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.enter-btn:hover {
+    transform: scale(1.05); /* 滑鼠移過去會微微放大 */
+    box-shadow: 0 0 15px #ff0202; /* 發光效果 */
+}
+        body {
+            background-color: #0c0c0c; /* 深色背景 */
+            color: #ffffff;
+            font-family: 'Noto Sans TC', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 50px;
+        }
+        .container {
+            background-color: #fdfdfd;
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 30px 70px rgba(19, 200, 255, 0.501); /* 酷炫發光陰影 */
+            transition: transform 0.3s ease; /* 動畫過渡效果 */
+        }
+        /* 滑鼠移過去時，整個區塊會微微浮起來的動畫 */
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        h1 { color: #0d0d0d; }
+        .feedback-box { margin-top: 30px; }
+        textarea {
+            width: 80%; height: 100px; padding: 10px;
+            border-radius: 8px; border: 1px solid #00e5ff;
+            background-color: #ffffff; color: rgb(0, 0, 0);
+        }
+        button {
+            background-color: #00e5ff; color: black;
+            border: none; padding: 10px 20px; font-size: 16px;
+            border-radius: 5px; cursor: pointer; margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover { background-color: #00b3cc; } /* 按鈕懸浮變色 */
+        .msg { color: #f3ff0f; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>歡迎來到U魂的棺材</h1>
+        <a href="{{ url_for('about') }}" class="enter-btn">進入棺材當盜墓者→</a>
+        <p>每天都只想睡覺......zzz</p>
+        
+        <div style="margin: 30px 0;">
+            <div style="margin: 30px 0; display: flex; flex-direction: column; align-items: center;">
+            
+            <img src="{{ url_for('static', filename='profile.jpg') }}" alt="我的大頭貼" 
+                 style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid #00e5ff; object-fit: cover; box-shadow: 0 0 15px #00e5ff;">
+            
+            <h2 style="margin-top: 15px; color: #ffffff;">我是U魂</h2>
+            <p style="color: #aaaaaa;">我還沒想到這裡要寫什麼</p>
+
+            <br>
+
+            <div style="background-color: #2a2a2a; padding: 15px; border-radius: 10px; width: 100%; max-width: 600px;">
+                <img src="{{ url_for('static', filename='main_pic.jpg') }}" alt="展示圖片" 
+                     style="width: 100%; border-radius: 8px;">
+                <p style="margin-top: 10px; font-size: 14px; color: #cccccc;">個人的繪型設定（人形基本上只需要把獸臉看成人臉就差不多了。）</p>
+            </div>
+            
+        </div>
+        </div>
+
+        <hr style="border-color: #444;">
+
+        <div class="feedback-box">
+            <h3 style="color: #a50505;">✉️ 任何人都可以留的匿名意見或者聊天，都可以啦</h3>
+            <form method="POST">
+                <textarea name="feedback" placeholder="請寫下您的想法..."></textarea><br>
+                <button type="submit">確定送出！</button>
+            </form>
+            
+            {% if message %}
+                <p class="msg">{{ message }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
