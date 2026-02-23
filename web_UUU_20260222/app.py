@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import datetime
+import requests
 
 app = Flask(__name__)
 
@@ -11,11 +12,12 @@ def home():
     if request.method == "POST":
         feedback = request.form.get("feedback")
         if feedback:
-            # 儲存意見到 txt 檔案
-            now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            with open("feedback.txt", "a", encoding="utf-8") as file:
-                file.write(f"時間：{now}\n意見：{feedback}\n{'-'*20}\n")
-            message = "感謝！您的意見已成功送出並儲存。"
+            # 將留言發送到 Google 試算表
+            google_script_url = "https://script.google.com/macros/s/AKfycbx2jAK-J2cbkSXbzk2J9NLl2xKOsrapdU3feuDPzl5a0Dt3gSpL5uI1Wi11Twi_l6Hqdg/exec"
+            payload = {"message": feedback}
+            requests.post(google_script_url, data=payload)
+            
+            message = "感謝！您的意見已成功送出並記錄。"
             
     # render_template 會自動去找 templates 資料夾下的 index.html
     return render_template("index.html", message=message)
