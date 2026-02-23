@@ -15,7 +15,7 @@ def home():
             now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open("feedback.txt", "a", encoding="utf-8") as file:
                 file.write(f"時間：{now}\n意見：{feedback}\n{'-'*20}\n")
-            message = "感謝！您的意見已成功送出並隱藏儲存。"
+            message = "感謝！您的意見已成功送出並儲存。"
             
     # render_template 會自動去找 templates 資料夾下的 index.html
     return render_template("index.html", message=message)
